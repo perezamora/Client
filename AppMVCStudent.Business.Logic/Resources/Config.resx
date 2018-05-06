@@ -129,6 +129,9 @@
   <data name="apiGetById" xml:space="preserve">
     <value>api/Student/Read?id=</value>
   </data>
+  <data name="apiUpdate" xml:space="preserve">
+    <value>api/Student/Update?id=</value>
+  </data>
   <data name="basendpoint" xml:space="preserve">
     <value>BaseApiUrl</value>
   </data>

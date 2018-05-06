@@ -97,6 +97,15 @@ namespace AppMVCStudent.Business.Logic.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to api/Student/Update?id=.
+        /// </summary>
+        internal static string apiUpdate {
+            get {
+                return ResourceManager.GetString("apiUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BaseApiUrl.
         /// </summary>
         internal static string basendpoint {

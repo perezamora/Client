@@ -30,10 +30,6 @@ namespace AppMVCStudent.Controllers
             return View((IEnumerable<Student>)result);
         }
 
-        public ActionResult Edit()
-        {
-            return View();
-        }
 
         public ActionResult Details(int id)
         {
@@ -54,7 +50,7 @@ namespace AppMVCStudent.Controllers
         public ActionResult Delete(int id)
         {
             _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + id);
-            
+
             try
             {
                 var result = Task.Run(() => _studentService.Delete(id)).Result;
@@ -75,6 +71,7 @@ namespace AppMVCStudent.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Student student)
         {
+            _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name);
             try
             {
                 if (ModelState.IsValid)
@@ -86,6 +83,42 @@ namespace AppMVCStudent.Controllers
             catch (Exception)
             {
                 ModelState.AddModelError("", "error en validacion");
+            }
+            return View(student);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + id);
+            Student student;
+            try
+            {
+                student = Task.Run(() => _studentService.Get(id)).Result;
+            }
+            catch (Exception)
+            {
+                return HttpNotFound();
+            }
+
+            return View(student);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPost(int id, Student student)
+        {
+            _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + student.ToString());
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var result = Task.Run(() => _studentService.Update(student)).Result;
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Error web api edit post");
             }
             return View(student);
         }

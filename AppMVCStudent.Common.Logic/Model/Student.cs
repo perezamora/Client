@@ -30,5 +30,10 @@ namespace AppMVCStudent.Common.Logic.Model
         public int Edad { get; set; }
         public DateTime FechaCreacion { get; set; }
         #endregion
+
+        #region Public Method
+        public override String ToString() => string.Format("{0};{1};{2};{3};{4};{5};{6};",
+                 this.Id, this.Name, this.Apellidos, this.Dni, this.FechaCreacion, this.Edad, this.FechaCreacion);
+        #endregion
     }
 }

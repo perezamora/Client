@@ -80,8 +80,6 @@ namespace AppMVCStudent.Business.Logic
             Student studentAdd;
             try
             {
-                //student.FechaNacimiento = DateTime.Now; // ojo prueba
-
                 var endpoint = Resources.Config.apiAdd;
                 var response = await _client.PostAsJsonAsync(endpoint, student);
                 response.EnsureSuccessStatusCode();
@@ -110,6 +108,28 @@ namespace AppMVCStudent.Business.Logic
                 {
                     var result = await content.ReadAsStringAsync();
                     return 1;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<Student> Update(Student student)
+        {
+            _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + student.ToString());
+            Student studentAdd;
+            try
+            {
+                var endpoint = Resources.Config.apiUpdate + student.Id;
+                var response = await _client.PutAsJsonAsync(endpoint, student);
+                response.EnsureSuccessStatusCode();
+                using (var content = response.Content)
+                {
+                    studentAdd = await content.ReadAsAsync<Student>();
+                    return studentAdd;
                 }
             }
             catch (Exception)

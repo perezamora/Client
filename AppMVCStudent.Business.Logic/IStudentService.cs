@@ -13,5 +13,6 @@ namespace AppMVCStudent.Business.Logic
         Task<Student> Get(int id);
         Task<int> Delete(int id);
         Task<Student> Create(Student student);
+        Task<Student> Update(Student student);
     }
 }
