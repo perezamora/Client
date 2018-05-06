@@ -1,0 +1,32 @@
+﻿@model AppMVCStudent.Common.Logic.Model.Student
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            @Html.DisplayNameFor(model => model.Id) : @Html.DisplayFor(model => model.Id)
+        </li>
+        <li class="list-group-item">
+            @Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)
+        </li>
+        <li class="list-group-item">
+            @Html.DisplayNameFor(model => model.Apellidos) : @Html.DisplayFor(model => model.Apellidos)
+        </li>
+        <li class="list-group-item">
+            @Html.DisplayNameFor(model => model.Dni) : @Html.DisplayFor(model => model.Dni)
+        </li>
+        <li class="list-group-item">
+            @Html.DisplayNameFor(model => model.Edad) : @Html.DisplayFor(model => model.Edad)
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back Home", "Index")
+    </p>
+</div>

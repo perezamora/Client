@@ -10,7 +10,8 @@ namespace AppMVCStudent.Business.Logic
     public interface IStudentService
     {
         Task<List<Student>> GetAll();
-        Task<Student> Get();
-        Task<Student> Set(Student student);
+        Task<Student> Get(int id);
+        Task<int> Delete(int id);
+        Task<Student> Create(Student student);
     }
 }

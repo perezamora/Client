@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="apiAdd" xml:space="preserve">
+    <value>api/Student/Add</value>
+  </data>
+  <data name="apiDelete" xml:space="preserve">
+    <value>api/Student/Delete?id=</value>
+  </data>
   <data name="apiGetAll" xml:space="preserve">
     <value>api/Student/GetAll</value>
+  </data>
+  <data name="apiGetById" xml:space="preserve">
+    <value>api/Student/Read?id=</value>
   </data>
   <data name="basendpoint" xml:space="preserve">
     <value>BaseApiUrl</value>

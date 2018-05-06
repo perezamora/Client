@@ -19,7 +19,6 @@ namespace AppMVCStudent.Business.Logic
 
         public StudentService(HttpClient client, ILogger log)
         {
-            //this._client = ConfigurationService.InitClient(client);
             this._client = client;
             this.BaseUrl = System.Configuration.ConfigurationManager.AppSettings[Resources.Config.basendpoint];
             this.InitializeWSR();
@@ -33,15 +32,30 @@ namespace AppMVCStudent.Business.Logic
             this._client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<Student> Get()
+        public async Task<Student> Get(int id)
         {
-            throw new NotImplementedException();
+            _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + id);
+            try
+            {
+                var endpoint = Resources.Config.apiGetById + id;
+                var response = await _client.GetAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+                using (var content = response.Content)
+                {
+                    var result = await content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<Student>(result);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<List<Student>> GetAll()
         {
             _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + _client.BaseAddress + Resources.Config.apiGetAll);
-
             try
             {
                 var response = await _client.GetAsync(Resources.Config.apiGetAll);
@@ -60,9 +74,49 @@ namespace AppMVCStudent.Business.Logic
             }
         }
 
-        public async Task<Student> Set(Student student)
+        public async Task<Student> Create(Student student)
         {
-            throw new NotImplementedException();
+            _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + student.ToString());
+            Student studentAdd;
+            try
+            {
+                //student.FechaNacimiento = DateTime.Now; // ojo prueba
+
+                var endpoint = Resources.Config.apiAdd;
+                var response = await _client.PostAsJsonAsync(endpoint, student);
+                response.EnsureSuccessStatusCode();
+                using (var content = response.Content)
+                {
+                    studentAdd = await content.ReadAsAsync<Student>();
+                    return studentAdd;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<int> Delete(int id)
+        {
+            _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + id);
+            try
+            {
+                var endpoint = Resources.Config.apiDelete + id;
+                var response = await _client.DeleteAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+                using (var content = response.Content)
+                {
+                    var result = await content.ReadAsStringAsync();
+                    return 1;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

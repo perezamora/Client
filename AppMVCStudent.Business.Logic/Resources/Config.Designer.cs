@@ -61,11 +61,38 @@ namespace AppMVCStudent.Business.Logic.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to api/Student/Add.
+        /// </summary>
+        internal static string apiAdd {
+            get {
+                return ResourceManager.GetString("apiAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to api/Student/Delete?id=.
+        /// </summary>
+        internal static string apiDelete {
+            get {
+                return ResourceManager.GetString("apiDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to api/Student/GetAll.
         /// </summary>
         internal static string apiGetAll {
             get {
                 return ResourceManager.GetString("apiGetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to api/Student/Read?id=.
+        /// </summary>
+        internal static string apiGetById {
+            get {
+                return ResourceManager.GetString("apiGetById", resourceCulture);
             }
         }
         
