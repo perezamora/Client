@@ -76,14 +76,15 @@
   <ItemGroup>
     <Compile Include="Autofac\BusinessIocModule.cs" />
     <Compile Include="IStudentService.cs" />
+    <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConfigurationService.cs" />
     <Compile Include="Resources\Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Config.resx</DependentUpon>
     </Compile>
     <Compile Include="StudentService.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppMVCStudent.Common.Logic\AppMVCStudent.Common.Logic.csproj">

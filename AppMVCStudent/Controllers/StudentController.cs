@@ -23,6 +23,7 @@ namespace AppMVCStudent.Controllers
             _log = log;
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name);
@@ -31,6 +32,7 @@ namespace AppMVCStudent.Controllers
         }
 
 
+        [Authorize]
         public ActionResult Details(int id)
         {
             _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + id);
@@ -47,6 +49,7 @@ namespace AppMVCStudent.Controllers
             return View(student);
         }
 
+        [Authorize]
         public ActionResult Delete(int id)
         {
             _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + id);
@@ -67,6 +70,7 @@ namespace AppMVCStudent.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Student student)
@@ -87,6 +91,7 @@ namespace AppMVCStudent.Controllers
             return View(student);
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             _log.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + ":" + id);
@@ -103,6 +108,7 @@ namespace AppMVCStudent.Controllers
             return View(student);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int id, Student student)
